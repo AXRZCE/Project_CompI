@@ -7,6 +7,9 @@ from datetime import datetime
 from diffusers import StableDiffusionPipeline
 from PIL import Image
 
+# Add project root to path for imports
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 # -------- 1. SETUP --------
 if torch.cuda.is_available():
     device = "cuda"
@@ -15,7 +18,7 @@ else:
     device = "cpu"
     print("Running on CPU.")
 
-OUTPUT_DIR = "outputs"
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', '..', "outputs")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def log(msg):

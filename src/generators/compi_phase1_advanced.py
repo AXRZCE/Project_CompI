@@ -10,6 +10,9 @@ from diffusers import StableDiffusionPipeline
 from PIL import Image
 import json
 
+# Add project root to path for imports
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 # ------------------ 1. SETUP AND ARGUMENT PARSING ------------------
 
 def setup_args():

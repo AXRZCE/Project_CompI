@@ -8,20 +8,26 @@ This guide covers the Phase 1 implementation of CompI's text-to-image generation
 
 ```bash
 # Simple generation with interactive prompt
-python compi_phase1_text2image.py
+python run_basic_generation.py
 
 # Generate from command line
-python compi_phase1_text2image.py "A magical forest, digital art, highly detailed"
+python run_basic_generation.py "A magical forest, digital art, highly detailed"
+
+# Or run directly from src/generators/
+python src/generators/compi_phase1_text2image.py "A magical forest"
 ```
 
 ### Advanced Usage
 
 ```bash
 # Advanced script with more options
-python compi_phase1_advanced.py "cyberpunk city at sunset" --negative "blurry, low quality" --steps 50 --batch 3
+python run_advanced_generation.py "cyberpunk city at sunset" --negative "blurry, low quality" --steps 50 --batch 3
 
 # Interactive mode for experimentation
-python compi_phase1_advanced.py --interactive
+python run_advanced_generation.py --interactive
+
+# Or run directly from src/generators/
+python src/generators/compi_phase1_advanced.py --interactive
 ```
 
 ## 📋 Available Scripts
@@ -77,30 +83,30 @@ Options:
 
 ```bash
 # Simple landscape
-python compi_phase1_text2image.py "serene mountain lake, golden hour, photorealistic"
+python run_basic_generation.py "serene mountain lake, golden hour, photorealistic"
 
 # Digital art style
-python compi_phase1_text2image.py "futuristic robot, neon lights, cyberpunk style, digital art"
+python run_basic_generation.py "futuristic robot, neon lights, cyberpunk style, digital art"
 ```
 
 ### Advanced Examples
 
 ```bash
 # High-quality generation with negative prompts
-python compi_phase1_advanced.py "beautiful portrait of a woman, oil painting style" \
+python run_advanced_generation.py "beautiful portrait of a woman, oil painting style" \
   --negative "blurry, distorted, low quality, bad anatomy" \
   --steps 50 --guidance 8.0
 
 # Batch generation with fixed seed
-python compi_phase1_advanced.py "abstract geometric patterns, colorful" \
+python run_advanced_generation.py "abstract geometric patterns, colorful" \
   --batch 5 --seed 12345 --steps 40
 
 # Custom dimensions for landscape
-python compi_phase1_advanced.py "panoramic view of alien landscape" \
+python run_advanced_generation.py "panoramic view of alien landscape" \
   --width 768 --height 512 --steps 35
 
 # Interactive experimentation
-python compi_phase1_advanced.py --interactive
+python run_advanced_generation.py --interactive
 ```
 
 ## 📁 Output Structure
@@ -175,7 +181,8 @@ Each generated image (in advanced mode) includes a JSON metadata file with:
 **Usage:**
 
 ```bash
-python compi_phase1b_styled_generation.py [prompt]
+python run_styled_generation.py [prompt]
+# Or directly: python src/generators/compi_phase1b_styled_generation.py [prompt]
 ```
 
 ### 4. `compi_phase1b_advanced_styling.py` - Advanced Style Control
@@ -191,7 +198,8 @@ python compi_phase1b_styled_generation.py [prompt]
 **Command Line Options:**
 
 ```bash
-python compi_phase1b_advanced_styling.py [OPTIONS] [PROMPT]
+python run_advanced_styling.py [OPTIONS] [PROMPT]
+# Or directly: python src/generators/compi_phase1b_advanced_styling.py [OPTIONS] [PROMPT]
 
 Options:
   --style, -s TEXT        Art style (or number from list)
@@ -210,24 +218,24 @@ Options:
 
 ```bash
 # Interactive mode with guided selection
-python compi_phase1b_styled_generation.py
+python run_styled_generation.py
 
 # Command line with style selection
-python compi_phase1b_advanced_styling.py "mountain landscape" --style cyberpunk --mood dramatic
+python run_advanced_styling.py "mountain landscape" --style cyberpunk --mood dramatic
 ```
 
 **Advanced Style Control:**
 
 ```bash
 # High quality with multiple variations
-python compi_phase1b_advanced_styling.py "portrait of a wizard" \
+python run_advanced_styling.py "portrait of a wizard" \
   --style "oil painting" --mood "mysterious" \
   --quality high --variations 3 \
   --negative "blurry, distorted, amateur"
 
 # List available options
-python compi_phase1b_advanced_styling.py --list-styles
-python compi_phase1b_advanced_styling.py --list-moods
+python run_advanced_styling.py --list-styles
+python run_advanced_styling.py --list-moods
 ```
 
 **Available Styles:**

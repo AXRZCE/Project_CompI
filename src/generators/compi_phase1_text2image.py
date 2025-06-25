@@ -7,6 +7,9 @@ from datetime import datetime
 from diffusers import StableDiffusionPipeline
 from PIL import Image
 
+# Add project root to path for imports
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 # ------------------ 1. SETUP AND CHECKS ------------------
 
 # Check for GPU
@@ -18,7 +21,7 @@ else:
     print("No CUDA GPU detected. Running on CPU. Generation will be slow.")
 
 # Set up output directory
-OUTPUT_DIR = "outputs"
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', '..', "outputs")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Logging function

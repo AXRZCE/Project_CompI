@@ -16,14 +16,17 @@ CompI (Compositional Intelligence) is designed to create rich, contextually-awar
 ```
 Project CompI/
 ├── src/                    # Source code
+│   ├── generators/        # Image generation modules
 │   ├── models/            # Model implementations
 │   ├── utils/             # Utility functions
 │   ├── data/              # Data processing
-│   └── ui/                # User interface components
+│   ├── ui/                # User interface components
+│   └── setup_env.py       # Environment setup script
 ├── notebooks/             # Jupyter notebooks for experimentation
 ├── data/                  # Dataset storage
 ├── outputs/               # Generated content
 ├── tests/                 # Unit tests
+├── run_*.py               # Convenience scripts for generators
 ├── requirements.txt       # Python dependencies
 └── README.md             # This file
 ```
@@ -72,6 +75,19 @@ pip install -r requirements.txt
 python src/test_setup.py
 ```
 
+## 🚀 Quick Start
+
+```bash
+# Basic text-to-image generation
+python run_basic_generation.py "A magical forest, digital art"
+
+# Advanced generation with style conditioning
+python run_advanced_styling.py "dragon in a crystal cave" --style "oil painting" --mood "dramatic"
+
+# Interactive style selection
+python run_styled_generation.py
+```
+
 ## 🎯 Core Features
 
 - **Text Analysis**: Emotion detection and sentiment analysis
@@ -98,4 +114,5 @@ This is a development project. Feel free to experiment and extend functionality.
 ## 📄 License
 
 MIT License - see LICENSE file for details.
+
 # Project_CompI

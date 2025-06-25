@@ -10,6 +10,9 @@ from datetime import datetime
 from diffusers import StableDiffusionPipeline
 from PIL import Image
 
+# Add project root to path for imports
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 # -------- 1. SETUP AND ARGUMENT PARSING --------
 
 def setup_args():
@@ -29,7 +32,7 @@ def setup_args():
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
-OUTPUT_DIR = "outputs"
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', '..', "outputs")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def log(msg):
