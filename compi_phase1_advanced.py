@@ -54,8 +54,7 @@ def load_model(model_name):
         
         # Memory optimizations
         pipe.enable_attention_slicing()
-        if device == "cuda":
-            pipe.enable_memory_efficient_attention()
+        # Note: enable_memory_efficient_attention() is deprecated in newer versions
         
         log("Model loaded successfully")
         return pipe
