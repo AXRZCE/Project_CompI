@@ -33,7 +33,7 @@ log(f"Loading model: {MODEL_NAME} (this may take a minute on first run)")
 
 # Optionally, disable the safety checker for pure creative exploration
 def dummy_safety_checker(images, **kwargs):
-    return images, False
+    return images, [False] * len(images)
 
 try:
     pipe = StableDiffusionPipeline.from_pretrained(
