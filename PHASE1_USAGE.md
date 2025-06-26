@@ -249,6 +249,59 @@ python run_advanced_styling.py --list-moods
 - dreamy, dark, peaceful, vibrant, melancholic
 - mysterious, whimsical, dramatic, retro
 
+## 🖥️ Phase 1.C: Interactive Web UI
+
+### 5. `compi_phase1c_streamlit_ui.py` - Streamlit Web Interface
+
+**Features:**
+
+- Complete web-based interface for text-to-image generation
+- Interactive style and mood selection with custom options
+- Advanced settings (steps, guidance, dimensions, negative prompts)
+- Real-time image generation and display
+- Progress tracking and generation logs
+- Automatic saving with comprehensive metadata
+
+**Usage:**
+
+```bash
+python run_ui.py
+# Or directly: streamlit run src/ui/compi_phase1c_streamlit_ui.py
+```
+
+### 6. `compi_phase1c_gradio_ui.py` - Gradio Web Interface
+
+**Features:**
+
+- Alternative web interface with Gradio framework
+- Gallery view for multiple image variations
+- Collapsible advanced settings
+- Real-time generation logs
+- Mobile-friendly responsive design
+
+**Usage:**
+
+```bash
+python run_gradio_ui.py
+# Or directly: python src/ui/compi_phase1c_gradio_ui.py
+```
+
+### Web UI Examples
+
+**Streamlit Interface:**
+
+- Navigate to http://localhost:8501 after running
+- Full-featured interface with sidebar settings
+- Progress bars and status updates
+- Expandable sections for details
+
+**Gradio Interface:**
+
+- Navigate to http://localhost:7860 after running
+- Gallery-style image display
+- Compact, mobile-friendly design
+- Real-time generation feedback
+
 ## 🎯 Next Steps
 
 Phase 1 establishes the foundation for CompI's text-to-image capabilities. Future phases will add:
