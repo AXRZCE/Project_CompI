@@ -80,13 +80,70 @@ def load_config(config_path: Union[str, Path]) -> Dict[str, Any]:
 def ensure_dir(path: Union[str, Path]) -> Path:
     """
     Ensure directory exists, create if it doesn't.
-    
+
     Args:
         path: Directory path
-        
+
     Returns:
         Path object
     """
     path = Path(path)
     path.mkdir(parents=True, exist_ok=True)
     return path
+
+def ensure_directory_exists(path: Union[str, Path]) -> Path:
+    """
+    Alias for ensure_dir for backward compatibility.
+
+    Args:
+        path: Directory path
+
+    Returns:
+        Path object
+    """
+    return ensure_dir(path)
+
+def generate_filename(prompt: str, style: str = "", mood: str = "",
+                     seed: int = 0, variation: int = 1,
+                     has_audio: bool = False, max_length: int = 100) -> str:
+    """
+    Generate a descriptive filename for generated images.
+
+    Args:
+        prompt: Text prompt used for generation
+        style: Art style
+        mood: Mood/atmosphere
+        seed: Random seed used
+        variation: Variation number
+        has_audio: Whether audio was used in generation
+        max_length: Maximum filename length
+
+    Returns:
+        Generated filename (without extension)
+    """
+    import re
+    from datetime import datetime
+
+    # Clean and truncate prompt
+    prompt_clean = re.sub(r'[^\w\s-]', '', prompt.lower())
+    prompt_slug = "_".join(prompt_clean.split()[:6])[:30]
+
+    # Clean style and mood
+    style_slug = re.sub(r'[^\w]', '', style.lower())[:10] if style else ""
+    mood_slug = re.sub(r'[^\w]', '', mood.lower())[:10] if mood else ""
+
+    # Timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    # Audio indicator
+    audio_tag = "_audio" if has_audio else ""
+
+    # Combine all parts
+    parts = [prompt_slug, style_slug, mood_slug, timestamp, f"seed{seed}", f"v{variation}"]
+    filename = "_".join(filter(None, parts)) + audio_tag
+
+    # Truncate if too long
+    if len(filename) > max_length:
+        filename = filename[:max_length]
+
+    return filename

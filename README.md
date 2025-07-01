@@ -77,6 +77,8 @@ python src/test_setup.py
 
 ## 🚀 Quick Start
 
+### Phase 1: Text-to-Image Generation
+
 ```bash
 # Basic text-to-image generation
 python run_basic_generation.py "A magical forest, digital art"
@@ -86,14 +88,115 @@ python run_advanced_styling.py "dragon in a crystal cave" --style "oil painting"
 
 # Interactive style selection
 python run_styled_generation.py
+
+# Quality evaluation and analysis
+python run_evaluation.py
+
+# Personal style training with LoRA
+python run_lora_training.py --dataset-dir datasets/my_style
+
+# Generate with personal style
+python run_style_generation.py --lora-path lora_models/my_style/checkpoint-1000 "artwork in my_style"
+```
+
+### Phase 2.A: Audio-to-Image Generation 🎵
+
+```bash
+# Install audio processing dependencies
+pip install openai-whisper
+
+# Streamlit UI (Recommended)
+streamlit run src/ui/compi_phase2a_streamlit_ui.py
+
+# Command line generation
+python run_phase2a_audio_to_image.py --prompt "mystical forest" --audio "music.mp3"
+
+# Interactive mode
+python run_phase2a_audio_to_image.py --interactive
+
+# Test installation
+python src/test_phase2a.py
+
+# Run examples
+python examples/phase2a_audio_examples.py --example all
+```
+
+### Phase 2.B: Data/Logic-to-Image Generation 📊
+
+```bash
+# Streamlit UI (Recommended)
+streamlit run src/ui/compi_phase2b_streamlit_ui.py
+
+# Command line generation with CSV data
+python run_phase2b_data_to_image.py --prompt "data visualization" --csv "data.csv"
+
+# Mathematical formula generation
+python run_phase2b_data_to_image.py --prompt "mathematical harmony" --formula "np.sin(np.linspace(0, 4*np.pi, 100))"
+
+# Batch processing
+python run_phase2b_data_to_image.py --batch-csv "data_folder/" --prompt "scientific patterns"
+
+# Interactive mode
+python run_phase2b_data_to_image.py --interactive
+```
+
+### Phase 2.C: Emotional/Contextual Input to Image Generation 🌀
+
+```bash
+# Streamlit UI (Recommended)
+streamlit run src/ui/compi_phase2c_streamlit_ui.py
+
+# Command line generation with preset emotion
+python run_phase2c_emotion_to_image.py --prompt "mystical forest" --emotion "mysterious"
+
+# Custom emotion generation
+python run_phase2c_emotion_to_image.py --prompt "urban landscape" --emotion "🤩" --type custom
+
+# Descriptive emotion generation
+python run_phase2c_emotion_to_image.py --prompt "mountain vista" --emotion "I feel a sense of wonder" --type text
+
+# Batch emotion processing
+python run_phase2c_emotion_to_image.py --batch-emotions "joyful,sad,mysterious" --prompt "abstract art"
+
+# Interactive mode
+python run_phase2c_emotion_to_image.py --interactive
+```
+
+### Phase 2.D: Real-Time Data Feeds to Image Generation 🌎
+
+```bash
+# Streamlit UI (Recommended)
+streamlit run src/ui/compi_phase2d_streamlit_ui.py
+
+# Command line generation with weather data
+python run_phase2d_realtime_to_image.py --prompt "cityscape" --weather --city "Tokyo"
+
+# News-driven generation
+python run_phase2d_realtime_to_image.py --prompt "abstract art" --news --category "technology"
+
+# Multi-source generation
+python run_phase2d_realtime_to_image.py --prompt "world state" --weather --news --financial
+
+# Temporal series generation
+python run_phase2d_realtime_to_image.py --prompt "evolving world" --weather --temporal "0,30,60"
+
+# Interactive mode
+python run_phase2d_realtime_to_image.py --interactive
 ```
 
 ## 🎯 Core Features
 
 - **Text Analysis**: Emotion detection and sentiment analysis
-- **Image Generation**: Stable Diffusion integration
-- **Audio Processing**: Music and sound generation
-- **Multi-modal Fusion**: Combining different content types
+- **Image Generation**: Stable Diffusion integration with advanced conditioning
+- **Audio Processing**: Music and sound analysis with Whisper integration
+- **Data Processing**: CSV analysis and mathematical formula evaluation
+- **Emotion Processing**: Preset emotions, custom emotions, emoji, and contextual analysis
+- **Real-Time Integration**: Live weather, news, and financial data feeds
+- **Multi-modal Fusion**: Combining text, audio, data, emotions, and real-time feeds
+- **Pattern Recognition**: Automatic detection of trends, correlations, and seasonality
+- **Poetic Interpretation**: Converting data patterns and emotions into artistic language
+- **Color Psychology**: Emotion-based color palette generation and conditioning
+- **Temporal Awareness**: Time-sensitive data processing and evolution tracking
 
 ## 🔧 Tech Stack
 

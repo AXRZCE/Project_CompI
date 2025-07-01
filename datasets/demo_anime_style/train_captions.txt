@@ -1,0 +1,11 @@
+sample_style_06.png: a painting in demoanime style
+sample_style_03.png: a painting in demoanime style
+sample_style_01.png: a painting in demoanime style
+sample_style_09.png: a painting in demoanime style
+anime_style_02.png: a painting in demoanime style
+sample_style_05.png: a painting in demoanime style
+anime_style_00.png: a painting in demoanime style
+anime_style_03.png: a painting in demoanime style
+anime_style_01.png: a painting in demoanime style
+sample_style_02.png: a painting in demoanime style
+sample_style_07.png: a painting in demoanime style

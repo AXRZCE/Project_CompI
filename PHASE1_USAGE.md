@@ -286,6 +286,141 @@ python run_gradio_ui.py
 # Or directly: python src/ui/compi_phase1c_gradio_ui.py
 ```
 
+## 📊 Phase 1.D: Quality Evaluation Tools
+
+### 7. `compi_phase1d_evaluate_quality.py` - Comprehensive Evaluation Interface
+
+**Features:**
+
+- Systematic image quality assessment with 5-criteria scoring system
+- Interactive Streamlit web interface for detailed evaluation
+- Objective metrics calculation (perceptual hashes, dimensions, file size)
+- Batch evaluation capabilities for efficient processing
+- Comprehensive logging and CSV export for trend analysis
+- Summary analytics with performance insights and recommendations
+
+**Usage:**
+
+```bash
+python run_evaluation.py
+# Or directly: streamlit run src/generators/compi_phase1d_evaluate_quality.py
+```
+
+### 8. `compi_phase1d_cli_evaluation.py` - Command-Line Evaluation Tools
+
+**Features:**
+
+- Batch evaluation and analysis from command line
+- Statistical summaries and performance reports
+- Filtering by style, mood, and evaluation status
+- Automated scoring for large image sets
+- Detailed report generation with recommendations
+
+**Command Line Options:**
+
+```bash
+python src/generators/compi_phase1d_cli_evaluation.py [OPTIONS]
+
+Options:
+  --analyze                    Display evaluation summary and statistics
+  --report                     Generate detailed evaluation report
+  --batch-score P S M Q A      Batch score images (1-5 for each criteria)
+  --list-all                   List all images with evaluation status
+  --list-evaluated             List only evaluated images
+  --list-unevaluated          List only unevaluated images
+  --style TEXT                 Filter by style
+  --mood TEXT                  Filter by mood
+  --notes TEXT                 Notes for batch evaluation
+  --output FILE                Output file for reports
+```
+
+## 🎨 Phase 1.E: Personal Style Fine-tuning (LoRA)
+
+### 9. `compi_phase1e_dataset_prep.py` - Dataset Preparation for LoRA Training
+
+**Features:**
+
+- Organize and validate personal style images for training
+- Generate appropriate training captions with trigger words
+- Resize and format images for optimal LoRA training
+- Create train/validation splits with metadata tracking
+- Support for multiple image formats and quality validation
+
+**Usage:**
+
+```bash
+python src/generators/compi_phase1e_dataset_prep.py --input-dir my_artwork --style-name "my_art_style"
+# Or via wrapper: python run_dataset_prep.py --input-dir my_artwork --style-name "my_art_style"
+```
+
+### 10. `compi_phase1e_lora_training.py` - LoRA Fine-tuning Engine
+
+**Features:**
+
+- Full LoRA (Low-Rank Adaptation) fine-tuning pipeline
+- Memory-efficient training with gradient checkpointing
+- Configurable LoRA parameters (rank, alpha, learning rate)
+- Automatic checkpoint saving and validation monitoring
+- Integration with PEFT library for optimal performance
+
+**Command Line Options:**
+
+```bash
+python run_lora_training.py [OPTIONS] --dataset-dir DATASET_DIR
+
+Options:
+  --dataset-dir DIR            Required: Prepared dataset directory
+  --epochs INT                 Number of training epochs (default: 100)
+  --learning-rate FLOAT        Learning rate (default: 1e-4)
+  --lora-rank INT              LoRA rank (default: 4)
+  --lora-alpha INT             LoRA alpha (default: 32)
+  --batch-size INT             Training batch size (default: 1)
+  --save-steps INT             Save checkpoint every N steps
+  --gradient-checkpointing     Enable gradient checkpointing for memory efficiency
+  --mixed-precision            Use mixed precision training
+```
+
+### 11. `compi_phase1e_style_generation.py` - Personal Style Generation
+
+**Features:**
+
+- Generate images using trained LoRA personal styles
+- Adjustable style strength and generation parameters
+- Interactive and batch generation modes
+- Integration with existing CompI pipeline and metadata
+- Support for multiple LoRA styles and model switching
+
+**Usage:**
+
+```bash
+python run_style_generation.py --lora-path lora_models/my_style/checkpoint-1000 "a cat in my_style"
+# Or directly: python src/generators/compi_phase1e_style_generation.py --lora-path PATH PROMPT
+```
+
+### 12. `compi_phase1e_style_manager.py` - LoRA Style Management
+
+**Features:**
+
+- Manage multiple trained LoRA styles and checkpoints
+- Cleanup old checkpoints and organize model storage
+- Export style information and training analytics
+- Style database with automatic scanning and metadata
+- Batch operations for style maintenance and organization
+
+**Command Line Options:**
+
+```bash
+python src/generators/compi_phase1e_style_manager.py [OPTIONS]
+
+Options:
+  --list                       List all available LoRA styles
+  --info STYLE_NAME           Show detailed information about a style
+  --refresh                    Refresh the styles database
+  --cleanup STYLE_NAME         Clean up old checkpoints for a style
+  --export OUTPUT_FILE         Export styles information to CSV
+  --delete STYLE_NAME          Delete a LoRA style (requires --confirm)
+```
+
 ### Web UI Examples
 
 **Streamlit Interface:**

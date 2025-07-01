@@ -12,7 +12,13 @@ Project CompI/
 │   │   ├── compi_phase1_text2image.py          # Basic text-to-image
 │   │   ├── compi_phase1_advanced.py            # Advanced generation
 │   │   ├── compi_phase1b_styled_generation.py  # Style conditioning
-│   │   └── compi_phase1b_advanced_styling.py   # Advanced styling
+│   │   ├── compi_phase1b_advanced_styling.py   # Advanced styling
+│   │   ├── compi_phase1d_evaluate_quality.py   # Quality evaluation (Streamlit)
+│   │   ├── compi_phase1d_cli_evaluation.py     # Quality evaluation (CLI)
+│   │   ├── compi_phase1e_dataset_prep.py       # LoRA dataset preparation
+│   │   ├── compi_phase1e_lora_training.py      # LoRA fine-tuning
+│   │   ├── compi_phase1e_style_generation.py   # Personal style generation
+│   │   └── compi_phase1e_style_manager.py      # LoRA style management
 │   ├── 📁 models/                   # Model implementations (future)
 │   ├── 📁 utils/                    # Utility functions
 │   │   ├── __init__.py
@@ -34,6 +40,9 @@ Project CompI/
 ├── 🐍 run_advanced_generation.py    # Convenience: Advanced generation
 ├── 🐍 run_styled_generation.py      # Convenience: Style conditioning
 ├── 🐍 run_advanced_styling.py       # Convenience: Advanced styling
+├── 🐍 run_evaluation.py             # Convenience: Quality evaluation
+├── 🐍 run_lora_training.py          # Convenience: LoRA training
+├── 🐍 run_style_generation.py       # Convenience: Personal style generation
 ├── 📄 requirements.txt              # Python dependencies
 ├── 📄 development.md                # Development roadmap
 ├── 📄 PHASE1_USAGE.md              # Phase 1 usage guide
@@ -45,6 +54,7 @@ Project CompI/
 ## 🚀 Usage Patterns
 
 ### Convenience Scripts (Recommended)
+
 Run from project root for easy access:
 
 ```bash
@@ -59,9 +69,25 @@ python run_styled_generation.py
 
 # Advanced style conditioning
 python run_advanced_styling.py "prompt" --style "oil painting" --mood "dramatic"
+
+# Quality evaluation interface
+python run_evaluation.py
+
+# LoRA personal style training
+python run_lora_training.py --dataset-dir datasets/my_style
+
+# Generate with personal style
+python run_style_generation.py --lora-path lora_models/my_style/checkpoint-1000 "prompt"
+
+# LoRA personal style training
+python run_lora_training.py --dataset-dir datasets/my_style
+
+# Generate with personal style
+python run_style_generation.py --lora-path lora_models/my_style/checkpoint-1000 "prompt"
 ```
 
 ### Direct Module Access
+
 Run generators directly from their organized location:
 
 ```bash
@@ -77,22 +103,26 @@ python src/test_setup.py
 ## 🎯 Benefits of This Organization
 
 ### 1. **Clean Separation of Concerns**
+
 - **`src/generators/`** - All image generation logic
 - **`src/utils/`** - Reusable utility functions
 - **`src/`** - Core project modules and configuration
 - **Root level** - Convenience scripts and documentation
 
 ### 2. **Professional Python Structure**
+
 - Proper module organization with `__init__.py` files
 - Clear import paths and dependencies
 - Scalable architecture for future expansion
 
 ### 3. **Easy Access**
+
 - Convenience scripts provide simple access from project root
 - Direct module access for advanced users
 - Maintains backward compatibility
 
 ### 4. **Future-Ready**
+
 - Organized structure ready for Phase 2+ implementations
 - Clear places for audio processing, UI components, etc.
 - Modular design supports easy testing and maintenance
@@ -100,17 +130,20 @@ python src/test_setup.py
 ## 🔧 Development Guidelines
 
 ### Adding New Generators
+
 1. Create new generator in `src/generators/`
 2. Add imports to `src/generators/__init__.py`
 3. Create convenience script in project root if needed
 4. Update documentation
 
 ### Adding New Utilities
+
 1. Add utility functions to appropriate module in `src/utils/`
 2. Update `src/utils/__init__.py` imports
 3. Import in generators as needed
 
 ### Testing
+
 1. Add tests to `tests/` directory
 2. Use `src/test_setup.py` for environment verification
 3. Test both convenience scripts and direct module access

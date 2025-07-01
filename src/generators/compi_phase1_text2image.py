@@ -55,58 +55,63 @@ log("Model loaded successfully.")
 
 # ------------------ 3. PROMPT HANDLING ------------------
 
-if len(sys.argv) > 1:
-    prompt = " ".join(sys.argv[1:])
-    log(f"Prompt taken from command line: {prompt}")
-else:
-    prompt = input("Enter your prompt (e.g. 'A magical forest, digital art'): ").strip()
-    log(f"Prompt entered: {prompt}")
+def main():
+    """Main function for command-line execution"""
+    if len(sys.argv) > 1:
+        prompt = " ".join(sys.argv[1:])
+        log(f"Prompt taken from command line: {prompt}")
+    else:
+        prompt = input("Enter your prompt (e.g. 'A magical forest, digital art'): ").strip()
+        log(f"Prompt entered: {prompt}")
 
-if not prompt:
-    log("No prompt provided. Exiting.")
-    sys.exit(0)
+    if not prompt:
+        log("No prompt provided. Exiting.")
+        sys.exit(0)
 
-# ------------------ 4. GENERATION PARAMETERS ------------------
+    # ------------------ 4. GENERATION PARAMETERS ------------------
 
-SEED = torch.seed()  # You can use a fixed seed for reproducibility, e.g. 1234
-generator = torch.manual_seed(SEED) if device == "cpu" else torch.Generator(device).manual_seed(torch.seed())
+    SEED = torch.seed()  # You can use a fixed seed for reproducibility, e.g. 1234
+    generator = torch.manual_seed(SEED) if device == "cpu" else torch.Generator(device).manual_seed(torch.seed())
 
-num_inference_steps = 30   # More steps = better quality, slower (default 50)
-guidance_scale = 7.5       # Higher = follow prompt more strictly
+    num_inference_steps = 30   # More steps = better quality, slower (default 50)
+    guidance_scale = 7.5       # Higher = follow prompt more strictly
 
-# Output image size (SDv1.5 default 512x512)
-height = 512
-width = 512
+    # Output image size (SDv1.5 default 512x512)
+    height = 512
+    width = 512
 
-# ------------------ 5. IMAGE GENERATION ------------------
+    # ------------------ 5. IMAGE GENERATION ------------------
 
-log(f"Generating image for prompt: {prompt}")
-log(f"Params: steps={num_inference_steps}, guidance_scale={guidance_scale}, seed={SEED}")
+    log(f"Generating image for prompt: {prompt}")
+    log(f"Params: steps={num_inference_steps}, guidance_scale={guidance_scale}, seed={SEED}")
 
-with torch.autocast(device) if device == "cuda" else torch.no_grad():
-    result = pipe(
-        prompt,
-        height=height,
-        width=width,
-        num_inference_steps=num_inference_steps,
-        guidance_scale=guidance_scale,
-        generator=generator,
-    )
+    with torch.autocast(device) if device == "cuda" else torch.no_grad():
+        result = pipe(
+            prompt,
+            height=height,
+            width=width,
+            num_inference_steps=num_inference_steps,
+            guidance_scale=guidance_scale,
+            generator=generator,
+        )
 
-    image: Image.Image = result.images[0]
+        image: Image.Image = result.images[0]
 
-# ------------------ 6. SAVE OUTPUT ------------------
+    # ------------------ 6. SAVE OUTPUT ------------------
 
-# Filename: prompt short, datetime, seed
-prompt_slug = "_".join(prompt.lower().split()[:6])
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-filename = f"{prompt_slug[:40]}_{timestamp}_seed{SEED}.png"
-filepath = os.path.join(OUTPUT_DIR, filename)
-image.save(filepath)
-log(f"Image saved to {filepath}")
+    # Filename: prompt short, datetime, seed
+    prompt_slug = "_".join(prompt.lower().split()[:6])
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"{prompt_slug[:40]}_{timestamp}_seed{SEED}.png"
+    filepath = os.path.join(OUTPUT_DIR, filename)
+    image.save(filepath)
+    log(f"Image saved to {filepath}")
 
-# Optionally, show image (uncomment next line if running locally)
-# image.show()
+    # Optionally, show image (uncomment next line if running locally)
+    # image.show()
 
-# Log end
-log("Generation complete.")
+    # Log end
+    log("Generation complete.")
+
+if __name__ == "__main__":
+    main()
